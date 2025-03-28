@@ -126,7 +126,7 @@ TimeCraftJs.timepicker(".selector", {
 
 - **"MM"**- Two digit ex: 01 (January)
 
-- **"M"**- - One digit ex: 1 (January)
+- **"M"**- One digit ex: 1 (January)
 
 **Year**
 
@@ -161,6 +161,26 @@ TimeCraftJs.timepicker(".selector", {
 ## Supported themes
 
 There are 5 different themes available. To make use of them, the theme property must be set to 1, 2, 3, 4 or 5.
+
+#### 1 - Muted Pearl (default)
+
+![Image - datepicker theme 1](previews/theme1-datepicker.png)
+
+#### 2 - Blush Red
+
+![Image - datepicker theme 2](previews/theme2-datepicker.png) ![Image - timepicker theme 2](previews/theme2-timepicker.png) ![Image - timepicker menu theme 2](previews/theme2-timepicker2.png) ![Image - datetimepicker theme 2](previews/theme2-datetimepicker.png)
+
+#### 3 - Nature Green
+
+![Image - datepicker theme 3](previews/theme3-datepicker.png)
+
+#### 4 - Pastel Dream
+
+![Image - datepicker theme 4](previews/theme4-datepicker.png)
+
+#### 5 - Cloudy Slate
+
+![Image - datepicker theme 5](previews/theme5-datepicker.png)
 
 ## Menu
 
