@@ -5,11 +5,267 @@
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='16' fill='blue'/></svg>">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="TimeCraftJs - A simple vanilla JavaScript library">
+    <meta name="keywords" content="JavaScript, vanilla JS, library, TimeCraftJs, date, picker, datepicker, timepicker, datetimepicker">
+    <meta name="author" content="Daniel Nunes">
    
 </head>
-<body style="background-color: white;">
+<body>
     <center><h1>TimeCraftJs</h1></center>    
 
-</body>
+    <div style="display: flex; flex-direction: row; margin-bottom: 10px;">
+        <div style="font-weight: bold; font-size: 14pt;">Themes</div>
+        <select style="margin-left: 10px; width: 60px;" class="dropdownTheme">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+    </div>
+  
+    <input class="theme1" type="text"/>
+    <input class="theme2" type="text"/>
+    <input class="theme3" type="text"/>
 
+    <br><br><br>
+    <h3 class="rangeLabel">Scale: 1</h3>
+    <input type="range" class="sliderScale" min="0.4" max="4" step="0.1" value="1" style="width: 200px;">
+    <input style="margin-left: 10px;" class="scale" type="text"/> 
+
+    <br><br><br>
+
+    <div style="display: flex; flex-direction: row; margin-bottom: 10px; margin-top: 30px;">
+        <div style="font-weight: bold; font-size: 14pt;">Start week at</div>
+        <select style="margin-left: 10px; width: 80px;" class="dropdownStartMonday">
+            <option value="true">Monday</option>
+            <option value="false">Sunday</option>
+        </select>
+    </div>
+    <input class="startmonday" type="text"/> 
+
+    <br><br>
+
+    <h3>topOffset / leftOffset</h3>
+    <div class="offset" type="text" style="position: relative; border: 1px solid gray; width: 170px; height: 40px; display: flex; justify-content: center; align-items: center;"></div>
+    
+    <br><br>
+
+    <h3>Disable Weekends</h3>
+    <input class="enableWeekend" type="text"/> 
+
+    <br><br>
+
+    <h3>Show other days from different months</h3>
+    <input class="otherdays" type="text"/>
+    
+    <br><br><br>
+
+    <div style="display: flex; flex-direction: row; margin-bottom: 10px; margin-top: 30px;">
+        <div style="font-weight: bold; font-size: 14pt;">Languages</div>
+        <select style="margin-left: 10px; width: 100px;" class="dropdownLanguages">
+            <option value="en-GB">English</option>
+            <option value="pt-PT">Portuguese</option>
+            <option value="es-ES">Spanish</option>
+            <option value="fr-FR">French</option>
+        </select>
+    </div>
+
+    <input class="language-1" type="text"/>
+    <input class="language-2" type="text"/>
+    <input class="language-3" type="text"/>
+ 
+    <br><br><br>
+    <h3>Create / Destroy</h3>
+    <input class="createdestroy" type="text"/> 
+    <button type="button" onclick="Javascript:createPicker();">create</button> 
+    <button type="button" onclick="Javascript:destroyPicker();">destroy</button>
+    <b><span class="createdestroymessage"></span></b>
+        
+    <br><br><br>
+
+    <h3>Callback's</h3>
+    <input class="callback1" type="text" spellcheck="false"/>
+    <input class="callback2" type="text" spellcheck="false"/>
+    <label class="callbacklabel"></label>
+    <!-- <input class="callback3" type="text" spellcheck="false"/> -->
+    
+    <br><br><br>
+
+    <h3>Special events</h3>
+    <input class="specialevents1" type="text" spellcheck="false"/>
+    <input class="specialevents2" type="text" spellcheck="false"/>
+    <input class="specialevents3" type="text" spellcheck="false"/>
+    <br>
+    <br>
+    <input class="specialevents4" type="text" spellcheck="false"/>
+    <input class="specialevents5" type="text" spellcheck="false"/>
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+<script src="TimeCraftJs.min.js"></script>
+<script>
+    // THEMES ============================================================
+    TimeCraftJs.datepicker(".theme1", { theme: 1 });
+    TimeCraftJs.timepicker(".theme2", { theme: 1 });
+    TimeCraftJs.datetimepicker(".theme3", { theme: 1 });
+
+    const dropdownTheme = document.querySelector('.dropdownTheme');
+    dropdownTheme.addEventListener("change", function() {
+        const theme = parseInt(dropdownTheme.value);
+
+        TimeCraftJs.datepicker(".theme1", { theme: theme });
+        TimeCraftJs.timepicker(".theme2", { theme: theme });
+        TimeCraftJs.datetimepicker(".theme3", { theme: theme });
+    });
+    // ===================================================================
+
+    
+    // SCALE =============================================================
+    const slider = document.querySelector('.sliderScale');
+    const valueDisplay = document.querySelector('.rangeLabel');
+    let sliderTimeout = null;
+    TimeCraftJs.datepicker(".scale", { theme: 1, scale: 1 });
+
+    slider.addEventListener("input", function() {
+        valueDisplay.textContent = `Scale: ${parseFloat(slider.value).toFixed(1)}`;
+
+        clearTimeout(sliderTimeout);
+
+        sliderTimeout = setTimeout(() => {
+            TimeCraftJs.datepicker(".scale", { theme: 1, scale: parseFloat(slider.value) });
+            TimeCraftJs.open(".scale");
+        }, 300); 
+    });
+    // ===================================================================
+
+
+    // SCALE =============================================================
+    TimeCraftJs.datepicker(".startmonday", { startMonday: true });
+
+    const dropdownStartMonday = document.querySelector('.dropdownStartMonday');
+    dropdownStartMonday.addEventListener("change", function() {
+        TimeCraftJs.datepicker(".startmonday", { startMonday: dropdownStartMonday.value === "true" ? true : false });
+    });
+    // ===================================================================
+
+
+    // Offset ============================================================
+    document.querySelector('.offset').textContent = `${new Date().getDate().toString().padStart(2, '0')}-${(new Date().getMonth() + 1).toString().padStart(2, '0')}-${new Date().getFullYear()}`;
+    TimeCraftJs.datepicker(".offset", { topOffset: -12,  leftOffset: 50 });
+    // ===================================================================
+
+
+    // Weekends ==========================================================
+    TimeCraftJs.datepicker(".enableWeekend", { enableWeekend : false });
+    // ===================================================================
+
+
+    // Other days ========================================================
+    TimeCraftJs.datepicker(".otherdays", { showOtherDays : true });
+    // ===================================================================
+
+
+    // Languages =========================================================
+    TimeCraftJs.datepicker(".language-1", { language: "en-GB" }); 
+    TimeCraftJs.datetimepicker(".language-2", { language: "en-GB" }); 
+    TimeCraftJs.timepicker(".language-3", { language: "en-GB" }); 
+
+    const dropdownLanguages = document.querySelector('.dropdownLanguages');
+    dropdownLanguages.addEventListener("change", function() {
+        TimeCraftJs.datepicker(".language-1", { language: dropdownLanguages.value }); 
+        TimeCraftJs.datetimepicker(".language-2", { language: dropdownLanguages.value }); 
+        TimeCraftJs.timepicker(".language-3", { language: dropdownLanguages.value }); 
+    });
+    // ===================================================================
+
+
+    // Create / Destroy ==================================================
+    function createPicker() {
+        TimeCraftJs.datepicker(".createdestroy");
+        const element = document.querySelector('.createdestroymessage');
+        element.textContent = "Date picker created.";
+        setTimeout(() => {
+            element.textContent = "";
+        }, 1000);
+    }
+
+    function destroyPicker() {
+        TimeCraftJs.destroy(".createdestroy");
+        const element = document.querySelector('.createdestroymessage');
+        element.textContent = "Date picker destroyed.";
+        setTimeout(() => {
+            element.textContent = "";
+        }, 1000);
+    }
+    // ===================================================================
+
+
+    // Callback's ========================================================
+    TimeCraftJs.datepicker(".callback1", { 
+        theme: 2,
+        onSelected: (inp) => {
+            const callbacklabel = document.querySelector('.callbacklabel');
+            callbacklabel.textContent = `onSelected triggered: ${inp.value}`;
+
+            setTimeout(() => {
+                callbacklabel.textContent = "";
+            }, 2000);
+        }
+    });
+
+    TimeCraftJs.datetimepicker(".callback2", { 
+        theme: 2,
+        onClosed: (inp) => {
+            const callbacklabel = document.querySelector('.callbacklabel');
+            callbacklabel.textContent = `onClosed triggered: ${inp.value}`;
+
+            setTimeout(() => {
+                callbacklabel.textContent = "";
+            }, 2000);
+        }
+    }); 
+    // ===================================================================
+
+
+    // Special events ====================================================
+    let eventCurrentDay1 = 1;
+    let eventCurrentDay2 = 2;
+    if(new Date().getDate() < 3) {
+        let eventCurrentDay1 = 4;
+        let eventCurrentDay2 = 5;
+    }
+    const specialEvents = [
+        { date: new Date(new Date().getFullYear(), new Date().getMonth(), eventCurrentDay1), message: "This is an event message."},
+        { date: new Date(new Date().getFullYear(), new Date().getMonth(), eventCurrentDay2), message: "This is another event message."}
+    ];
+
+    TimeCraftJs.datepicker(".specialevents1", { 
+        theme: 1,
+        events: specialEvents
+    });
+
+    TimeCraftJs.datepicker(".specialevents2", { 
+        theme: 2,
+        events: specialEvents
+    });
+
+    TimeCraftJs.datepicker(".specialevents3", { 
+        theme: 3,
+        events: specialEvents
+    });
+
+    TimeCraftJs.datepicker(".specialevents4", { 
+        theme: 4,
+        events: specialEvents
+    });
+
+    TimeCraftJs.datepicker(".specialevents5", { 
+        theme: 5,
+        events: specialEvents
+    });
+    // ===================================================================
+</script>
 </html>
