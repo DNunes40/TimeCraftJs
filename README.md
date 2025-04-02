@@ -17,9 +17,9 @@ To view a live demo, click [here](https://dnunes40.github.io/TimeCraftJs).
 
 ## Using The Library
 
-1. Download the library file from "versions" folder
+1. Download the library TimeCraftJs.min.js
 2. Add it to your project
-3. Add it to your html page using HTML &lt;style&gt; element
+3. Link it to your html page using HTML &lt;style&gt; element
 4. Assuming you have your html element target, your script should look like this:
 
 ```javascript
@@ -112,6 +112,8 @@ TimeCraftJs.timepicker(".selector", {
 
 ## Date/time supported formats
 
+Examples: `{format: "dd-MMM-yyyy"}`, `{format: "dd-MMM-yyyy HH:mm:ss"}` or `{format: "HH:mm:ss"}`
+
 **Day**
 
 - **"dd"** Two digit ex: 01, 02, 09, 10, etc..
@@ -150,7 +152,13 @@ TimeCraftJs.timepicker(".selector", {
 
 - **"s"**- One digit ex: 8
 
+## 24/12 hour format
+
+By default, the format is set to 24 hours. To enable the 12-hour format, set the property `{hour24: false}`.
+
 ## Supported languages
+
+Example: `{language: "pt-PT"}`
 
 - **en-GB**
 - **en-US**
@@ -161,6 +169,8 @@ TimeCraftJs.timepicker(".selector", {
 ## Supported themes
 
 There are 5 different themes available. To make use of them, the theme property must be set to 1, 2, 3, 4 or 5.
+
+Example: `{theme: 1}`
 
 #### 1 - Muted Pearl (default)
 
@@ -241,6 +251,10 @@ TimeCraftJs.datepicker(".selector", {
 });
 ```
 
+Example:
+
+![Image - datepicker special event](previews/event1.png)
+
 ## Global functions
 
 ```javascript
@@ -250,7 +264,7 @@ TimeCraftJs.timepicker(".selector", { ...options });
 
 TimeCraftJs.datetimepicker(".selector", { ...options });
 
-//Update picker to something else
+//Change the picker to one different from the currently selected one.
 TimeCraftJs.update.datepicker(".selector", { ...options });
 
 TimeCraftJs.update.timepicker(".selector", { ...options });
