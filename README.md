@@ -168,7 +168,7 @@ Example: `{language: "pt-PT"}`
 
 ## Supported themes
 
-There are 5 different themes available. To make use of them, the theme property must be set to 1, 2, 3, 4 or 5.
+There are 6 different themes available. To make use of them, the theme property must be set to 1, 2, 3, 4, 5 or 6.
 
 Example: `{theme: 1}`
 
@@ -191,6 +191,10 @@ Example: `{theme: 1}`
 #### 5 - Cloudy Slate
 
 ![Image - datepicker theme 5](previews/theme5-datepicker.png)
+
+#### 6 - Twilight Glow
+
+![Image - datepicker theme 5](previews/theme6-datepicker.png)
 
 ## Menu
 

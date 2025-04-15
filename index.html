@@ -21,6 +21,7 @@
             <option value="3">3</option>
             <option value="4">4</option>
             <option value="5">5</option>
+            <option value="6">6</option>
         </select>
     </div>
   
@@ -33,7 +34,18 @@
     <input type="range" class="sliderScale" min="0.4" max="4" step="0.1" value="1" style="width: 200px;">
     <input style="margin-left: 10px;" class="scale" type="text"/> 
 
-    <br><br><br>
+    <br><br>
+
+    <div style="display: flex; flex-direction: row; margin-bottom: 10px; margin-top: 30px;">
+        <div style="font-weight: bold; font-size: 14pt;">24/12 hour</div>
+        <select style="margin-left: 10px; width: 80px;" class="dropdownHour">
+            <option value="12">12h</option>
+            <option value="24">24h</option>
+        </select>
+    </div>
+    <input class="inputHour" type="text"/> 
+
+    <br><br>
 
     <div style="display: flex; flex-direction: row; margin-bottom: 10px; margin-top: 30px;">
         <div style="font-weight: bold; font-size: 14pt;">Start week at</div>
@@ -88,7 +100,6 @@
     <input class="callback1" type="text" spellcheck="false"/>
     <input class="callback2" type="text" spellcheck="false"/>
     <label class="callbacklabel"></label>
-    <!-- <input class="callback3" type="text" spellcheck="false"/> -->
     
     <br><br><br>
 
@@ -100,6 +111,7 @@
     <br>
     <input class="specialevents4" type="text" spellcheck="false"/>
     <input class="specialevents5" type="text" spellcheck="false"/>
+    <input class="specialevents6" type="text" spellcheck="false"/>
 
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
@@ -142,7 +154,7 @@
     // ===================================================================
 
 
-    // SCALE =============================================================
+    // START MONDAY/SUNDAY ===============================================
     TimeCraftJs.datepicker(".startmonday", { startMonday: true });
 
     const dropdownStartMonday = document.querySelector('.dropdownStartMonday');
@@ -151,6 +163,17 @@
     });
     // ===================================================================
 
+
+    // 24/12 HOUR ========================================================
+    TimeCraftJs.datetimepicker(".inputHour", { hour24: false });
+
+    const dropdownHour = document.querySelector('.dropdownHour');
+    dropdownHour.addEventListener("change", function() {
+        TimeCraftJs.datetimepicker(".inputHour", { hour24: dropdownHour.value === "24" ? true : false });
+    });
+    // ===================================================================
+
+    
 
     // Offset ============================================================
     document.querySelector('.offset').textContent = `${new Date().getDate().toString().padStart(2, '0')}-${(new Date().getMonth() + 1).toString().padStart(2, '0')}-${new Date().getFullYear()}`;
@@ -264,6 +287,11 @@
 
     TimeCraftJs.datepicker(".specialevents5", { 
         theme: 5,
+        events: specialEvents
+    });
+
+    TimeCraftJs.datepicker(".specialevents6", { 
+        theme: 6,
         events: specialEvents
     });
     // ===================================================================
